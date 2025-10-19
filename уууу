@@ -2,54 +2,49 @@
 ```mermaid
 erDiagram
     OBLAST {
-      BIGSERIAL id PK
-      TEXT name UNIQUE
+        id PK
+        name
     }
-
     UNIVERSITY {
-      BIGSERIAL id PK
-      TEXT name
-      TEXT address
-      BIGINT oblast_id FK
+        id PK
+        name
+        address
+        oblast_id FK
     }
-
     DEPARTMENT {
-      BIGSERIAL id PK
-      TEXT name
-      BIGINT university_id FK
+        id PK
+        name
+        university_id FK
     }
-
     SPECIALTY {
-      BIGSERIAL id PK
-      TEXT code UNIQUE
-      TEXT name
-      BIGINT department_id FK
+        id PK
+        code
+        name
+        department_id FK
     }
-
     EDUCATIONFORM {
-      BIGSERIAL id PK
-      TEXT form_name UNIQUE
+        id PK
+        form_name
     }
-
     TUITIONFEE {
-      BIGSERIAL id PK
-      BIGINT specialty_id FK
-      BIGINT form_id FK
-      NUMERIC amount
-      TEXT currency
+        id PK
+        specialty_id FK
+        form_id FK
+        amount
+        currency
     }
-
     CONTEST {
-      BIGSERIAL id PK
-      BIGINT specialty_id FK
-      INT year
-      NUMERIC value
+        id PK
+        specialty_id FK
+        year
+        value
     }
 
-    OBLAST        ||--o{ UNIVERSITY   : "містить"
-    UNIVERSITY    ||--o{ DEPARTMENT   : "включає"
-    DEPARTMENT    ||--o{ SPECIALTY    : "має"
-    SPECIALTY     ||--o{ TUITIONFEE   : "має тарифи"
-    EDUCATIONFORM ||--o{ TUITIONFEE   : "визначає форму"
-    SPECIALTY     ||--o{ CONTEST      : "має конкурс"
+    OBLAST ||--o{ UNIVERSITY : "містить"
+    UNIVERSITY ||--o{ DEPARTMENT : "включає"
+    DEPARTMENT ||--o{ SPECIALTY : "має"
+    SPECIALTY ||--o{ TUITIONFEE : "має тарифи"
+    EDUCATIONFORM ||--o{ TUITIONFEE : "визначає форму"
+    SPECIALTY ||--o{ CONTEST : "має конкурс"
 ```
+
